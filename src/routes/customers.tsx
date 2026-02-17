@@ -183,9 +183,10 @@ function CustomersPage() {
               </div>
 
               {/* Pagination */}
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">Rows per page:</span>
+                  <span className="text-sm text-muted-foreground hidden sm:inline">Rows per page:</span>
+                  <span className="text-sm text-muted-foreground sm:hidden">Rows:</span>
                   <Select
                     value={pageSize.toString()}
                     onValueChange={(value) => {
@@ -205,8 +206,8 @@ function CustomersPage() {
                   </Select>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">
+                <div className="flex items-center gap-2 sm:gap-4">
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">
                     Page {page + 1}
                   </span>
                   <div className="flex gap-1">
@@ -215,16 +216,20 @@ function CustomersPage() {
                       size="sm"
                       onClick={() => setPage((p) => p - 1)}
                       disabled={page === 0}
+                      className="h-9 w-9 p-0 sm:h-8 sm:w-auto sm:px-3"
                     >
                       <ChevronLeft className="h-4 w-4" />
+                      <span className="sr-only sm:not-sr-only sm:ml-2">Previous</span>
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => setPage((p) => p + 1)}
                       disabled={filteredCustomers.length === 0}
+                      className="h-9 w-9 p-0 sm:h-8 sm:w-auto sm:px-3"
                     >
                       <ChevronRight className="h-4 w-4" />
+                      <span className="sr-only sm:not-sr-only sm:ml-2">Next</span>
                     </Button>
                   </div>
                 </div>
